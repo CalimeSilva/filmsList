@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.filmeslist.dto.FilmsDTO;
 import com.project.filmeslist.dto.FilmsMinDTO;
 import com.project.filmeslist.entities.Films;
 import com.project.filmeslist.services.FilmsServices;
@@ -16,8 +18,13 @@ public class FIlmsController {
 	@Autowired
 	FilmsServices filmsServices;
 	
-	@GetMapping()
+	@GetMapping
 	public List<FilmsMinDTO> findAll(){
 		return filmsServices.findAll();
+	}
+	@GetMapping("/{id}")
+	public FilmsDTO findByID(@PathVariable Long id){
+		FilmsDTO result = filmsServices.findById(id);
+		return result;
 	}
 }
