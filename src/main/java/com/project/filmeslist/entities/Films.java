@@ -15,30 +15,48 @@ public class Films {
 	
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	@Column(name="game_year")
+	private Double score;
+	@Column(name="film_year")
 	private Integer year;
 	private String plataforma;
+	
 	private String imgUrl;
-	private String Description;
+	@Column(columnDefinition = "TEXT")
+	private String description;
 
 	public Films() {
 
 	}
 
-	public Films(Long id, String title, Integer year, String plataforma, String imgUrl, String description) {
+	public Films(Long id, String title, Integer year, Double score, String plataforma, String imgUrl, String description) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.year = year;
+		this.score=score;
 		this.plataforma = plataforma;
 		this.imgUrl = imgUrl;
-		Description = description;
+		this.description = description;
+	}
+	public Long getId() {
+		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
+	public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -89,11 +107,11 @@ public class Films {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	
